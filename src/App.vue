@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "meme generator",
+  name: "meme-generator",
 
   data: () => ({
     //
