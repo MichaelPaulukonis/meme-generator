@@ -1,17 +1,16 @@
 {
   "name": "meme-generator-vue2",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "lint": "standard",
     "clean": "rm -rf dist",
     "deploy": "gh-pages -t -d dist",
     "bump": "npm version patch",
     "publish": "npm run bump && DEPLOY_ENV=GH_PAGES npm run generate && npm run deploy",
     "lint:fix": "standard --fix",
-    "lint": "standard",
     "open": "open https://michaelpaulukonis.github.io/mem-generator-vue",
     "reset": "rm -rf node_modules package-lock.json && npm i"
   },
