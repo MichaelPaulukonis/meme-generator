@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "standard",
     "clean": "rm -rf dist",
-    "deploy": "gh-pages -t -d dist",
+    "deploy": "gh-pages -t true -d dist",
     "bump": "npm version patch",
     "publish": "npm run bump && DEPLOY_ENV=GH_PAGES npm run build && npm run deploy",
     "lint:fix": "standard --fix",
