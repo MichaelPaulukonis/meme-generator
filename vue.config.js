@@ -4,5 +4,5 @@ module.exports = defineConfig({
   transpileDependencies: [
     'vuetify'
   ],
-  publicPath: process.env.NODE_ENV === "GH_PAGES" ? "/meme-generator/" : "",
+  publicPath: process.env.DEPLOY_ENV === "GH_PAGES" ? "/meme-generator/" : "",
 })
