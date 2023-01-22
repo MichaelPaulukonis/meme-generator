@@ -1,5 +1,5 @@
 // NOTE: this list is incomplete
-module.exports = [
+const memes = [
     {
         subject: 'toons',
         images: [
@@ -64,3 +64,5 @@ module.exports = [
         ]
     }
 ]
+
+export default memes.map(s => s.images).flat()

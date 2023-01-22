@@ -1,5 +1,7 @@
 <template lang="pug">
-home-page
+div
+  h1 ABOUT
+  home-page
 </template>
 
 <script>

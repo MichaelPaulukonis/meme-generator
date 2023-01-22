@@ -1,4 +1,4 @@
-module.exports = [
+export default [
     "Cantata One",
     "Fredericka the Great",
     "Acme",
