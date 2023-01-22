@@ -29,58 +29,90 @@ v-card-title {{ title }}
                 span(:style="{'font-family': item}") {{ item }}
           v-col.pr-4 
             v-row
-              ColorPicker(v-model="color1" @input="draw" text="text")
-              ColorPicker(v-model="outlineColor" @input="draw" text="outline")
+              ColorPicker(v-model="color1" @update:model-value="draw" text="text")
+              ColorPicker(v-model="outlineColor" @update:model-value="draw" text="outline")
 
 
           v-col.pr-4 
-            v-subheader.pl-0 padY
-              v-slider(v-model="padY" max="80" min="4" hide-details thumb-label @input="draw")
-                template(v-slot:append)
-                  v-text-field.mt-0.pt-0(
-                    v-model="padY"
-                    hide-details
-                    single-line
-                    thumb-label
-                    type="number"
-                    v-on:change="draw"
-                    ) {{ padY }}
+            v-slider(
+              v-model="padY"
+              :max="80"
+              :min="4"
+              :step="1"
+              hide-details
+              thumb-label
+              @update:model-value="draw"
+              label="pad Y"
+            )
+              template(v-slot:append)
+                v-text-field.mt-0.pt-0(
+                  v-model="padY"
+                  hide-details
+                  single-line
+                  thumb-label
+                  type="number"
+                  v-on:change="draw"
+                  )
 
           v-col.pr-4
-            v-subheader.pl-0 padX
-              v-slider(v-model="padX" max="80" min="4" hide-details thumb-label @input="draw")
-                template(v-slot:append)
-                  v-text-field.mt-0.pt-0(
-                    v-model="padX"
-                    hide-details
-                    single-line
-                    type="number"
-                    v-on:change="draw"
-                    ) {{ padX }}
+            v-slider(
+              v-model="padX"
+              label="pad X"
+              :max="80"
+              :min="4"
+              :step="1"
+              hide-details
+              thumb-label
+              @update:model-value="draw"
+            )
+              template(v-slot:append)
+                v-text-field.mt-0.pt-0(
+                  v-model="padX"
+                  hide-details
+                  single-line
+                  type="number"
+                  v-on:change="draw"
+                  )
 
           v-col.pr-4 
-            v-subheader.pl-0 text size
-              v-slider(v-model="fontSize" max="200" min="8" hide-details thumb-label @input="draw")
-                template(v-slot:append)
-                  v-text-field.mt-0.pt-0(
-                    v-model="fontSize"
-                    hide-details
-                    single-line
-                    type="number"
-                    v-on:change="draw"
-                    ) {{ fontSize }}
+            v-slider(
+              v-model="fontSize"
+              :max="200"
+              :min="8"
+              :step="1"
+              hide-details
+              thumb-label
+              @update:model-value="draw"
+              label="text size"
+            )
+              template(v-slot:append)
+                v-text-field.mt-0.pt-0(
+                  v-model="fontSize"
+                  hide-details
+                  single-line
+                  type="number"
+                  v-on:change="draw"
+                  )
 
           v-col.pr-4 
-            v-subheader.pl-0 outline
-              v-slider(v-model="outlineSize" max="40" min="0" hide-details thumb-label @input="draw")
-                template(v-slot:append)
-                  v-text-field.mt-0.pt-0(
-                    v-model="outlineSize"
-                    hide-details
-                    single-line
-                    type="number"
-                    v-on:change="draw"
-                    ) {{ outlineSize }}
+            v-slider(
+              v-model="outlineSize"
+              label="outline size"
+              :max="40"
+              :min="0"
+              :step="1"
+              hide-details
+              thumb-label
+              @update:model-value="draw"
+            )
+              template(v-slot:append)
+                v-text-field.mt-0.pt-0(
+                  v-model="outlineSize"
+                  hide-details
+                  single-line
+                  type="number"
+                  v-on:change="draw"
+                  )
 
         v-card-actions
           v-spacer
