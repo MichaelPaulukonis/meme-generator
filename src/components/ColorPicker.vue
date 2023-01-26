@@ -1,31 +1,33 @@
 <template>
-    <v-tooltip bottom>
-        <template v-slot:activator="{ on: tooltip }">
-            <div class="text-center">
-                <v-menu offset-y>
-                    <template v-slot:activator="{ on: button }">
-                        <v-btn :color="colorChoice" dark v-on="{ ...tooltip, ...button }">
-                            <!-- {{ text }} -->
-                        </v-btn>
-                    </template>
-                    <v-color-picker value="#7417BE" v-model="colorChoice" hide-canvas hide-inputs show-swatches
-                        class="mx-auto" @input="onInput">
-                    </v-color-picker>
-                </v-menu>
-            </div>
-        </template>
-        <span>{{ text }}</span>
-    </v-tooltip>
+  <div class="text-center">
+    <v-menu>
+      <template v-slot:activator="{ props: menu }">
+        <v-tooltip location="top">
+          <template v-slot:activator="{ props: tooltip }">
+            <v-btn
+              :color="colorChoice"
+              v-bind="mergeProps(menu, tooltip)"
+            >
+                {{ text }}
+            </v-btn>
+          </template>
+          <span>Select {{ text }} color</span>
+        </v-tooltip>
+      </template>
+      <v-color-picker v-model="colorChoice" hide-inputs show-swatches
+                        @update:model-value="onInput"></v-color-picker>
+    </v-menu>
+  </div>
 </template>
 
 <script>
-import { mask } from 'vue-the-mask'
+import { mergeProps } from 'vue'
 
 export default {
     name: "ColorPicker",
 
     props: {
-        value: {
+        modelValue: {
             type: String,
             default: '#000000'
         },
@@ -34,36 +36,27 @@ export default {
             default: 'color picker'
         },
     },
+    
+    emits: ['update:modelValue'],
 
     data() {
         return {
-            mask: '!#XXXXXXXX',
-            menu: false,
-            colorChoice: this.value
+            colorChoice: this.modelValue,
+            show: false,
         }
     },
 
     directives: {
-        mask
     },
 
     computed: {
-        swatchStyle() {
-            const { colorChoice, menu } = this
-            return {
-                backgroundColor: colorChoice,
-                cursor: 'pointer',
-                height: '30px',
-                width: '30px',
-                borderRadius: menu ? '50%' : '4px',
-                transition: 'border-radius 200ms ease-in-out'
-            }
-        }
     },
 
     methods: {
+        mergeProps,
         onInput() {
-            this.$emit('input', this.colorChoice)
+            console.log(`selected: ${this.colorChoice}`)
+            this.$emit('update:modelValue', this.colorChoice)
         }
     }
 }

@@ -32,7 +32,6 @@ v-card-title {{ title }}
               ColorPicker(v-model="color1" @update:model-value="draw" text="text")
               ColorPicker(v-model="outlineColor" @update:model-value="draw" text="outline")
 
-
           v-col.pr-4 
             v-slider(
               v-model="padY"
