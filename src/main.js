@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import infiniteScroll from "vue-infinite-scroll"
+import infiniteScroll from 'vue3-infinite-scroll-good'
 
 import './style.css'
 import App from './App.vue'

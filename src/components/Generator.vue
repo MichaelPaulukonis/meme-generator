@@ -115,13 +115,13 @@ v-card-title {{ title }}
 
         v-card-actions
           v-spacer
-          v-btn(color="primary", depressed, @click="exportImage")
+          v-btn(color="primary" variant="flat" @click="exportImage")
             v-icon(left) mdi-download
             | Export
 
-          v-btn(color="primary", text, @click="close") Cancel
+          v-btn(color="primary" variant="flat" @click="close") Cancel
 
-          v-btn(color="secondary", text, @click="search") Search
+          v-btn(color="secondary" variant="flat" @click="search") Search
 
 </template>
 

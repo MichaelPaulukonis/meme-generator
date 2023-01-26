@@ -42,3 +42,4 @@ Provides results (actual search takess place in Resuults.vue)
 - use local images OR search
 - more text options
 - condense UI
+- https://vueuse.org/guide/ ???

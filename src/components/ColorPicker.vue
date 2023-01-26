@@ -1,23 +1,20 @@
-<template>
-  <div class="text-center">
-    <v-menu>
-      <template v-slot:activator="{ props: menu }">
-        <v-tooltip location="top">
-          <template v-slot:activator="{ props: tooltip }">
-            <v-btn
-              :color="colorChoice"
-              v-bind="mergeProps(menu, tooltip)"
-            >
-                {{ text }}
-            </v-btn>
-          </template>
-          <span>Select {{ text }} color</span>
-        </v-tooltip>
-      </template>
-      <v-color-picker v-model="colorChoice" hide-inputs show-swatches
-                        @update:model-value="onInput"></v-color-picker>
-    </v-menu>
-  </div>
+<template lang="pug">
+.text-center
+  v-menu(:close-on-content-click="false")
+    template(v-slot:activator="{ props: menu }")
+      v-tooltip(location="top")
+        template(v-slot:activator="{ props: tooltip }")
+          v-btn(
+            :color="colorChoice"
+            v-bind="mergeProps(menu, tooltip)"
+          ) {{ text }}
+        span Select {{ text }} color
+    v-color-picker(
+      v-model="colorChoice"
+      hide-inputs
+      show-swatches
+      @update:model-value="onInput"
+    )
 </template>
 
 <script>
@@ -33,7 +30,7 @@ export default {
         },
         text: {
             type: String,
-            default: 'color picker'
+            default: ''
         },
     },
     
@@ -55,7 +52,6 @@ export default {
     methods: {
         mergeProps,
         onInput() {
-            console.log(`selected: ${this.colorChoice}`)
             this.$emit('update:modelValue', this.colorChoice)
         }
     }
