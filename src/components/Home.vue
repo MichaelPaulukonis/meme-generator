@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       text: "",
-      src: "https://live.staticflickr.com/3052/2937479216_ab63558e41",
+      src: "/memes/toons/philosoraptor.jpg",
       title: 'title',
       id: "1",
       searchVisible: false

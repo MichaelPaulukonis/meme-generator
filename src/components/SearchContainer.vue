@@ -18,26 +18,39 @@ v-form(
       @click:prepend="closeSearch"
       )
 
-  v-container(v-if="showResults")
-    results-container(
-      :text="text"
-      :photo="photo"
-      :total="total"
-      :page="page"
-      @next="fetchData"
-      @selected="selected"
-      )
+  v-card 
+    v-tabs(
+      v-model="tab"
+      bg-color="primary"
+    )
+      v-tab(value="flickr") Flickr 
+      v-tab(value="local") Local 
 
-  v-container()
-    local-container(
-      :text="text"
-      :photo="photo"
-      @selected="selected"
-      )      
+    v-card-text 
+      v-window(v-model="tab")
+        v-window-item(value="flickr")
+          v-container(v-if="showResults")
+            flickr-results(
+              :text="text"
+              :photo="photo"
+              :total="total"
+              :page="page"
+              @next="fetchData"
+              @selected="selected"
+              )
+
+        
+        v-window-item(value="local")
+          v-container()
+            local-container(
+              :text="text"
+              :photo="photo"
+              @selected="selected"
+              )      
 </template>
 
 <script>
-import ResultsContainer from './ResultsContainer.vue'
+import FlickrResults from './FlickrResultsContainer.vue'
 import LocalContainer from './LocalResultsContainer.vue'
 
 
@@ -45,7 +58,7 @@ export default {
   name: "searchPage",
 
   components: {
-    ResultsContainer,
+    FlickrResults,
     LocalContainer
   },
 
@@ -58,6 +71,7 @@ export default {
       page: 0,
       photo: [],
       total: 0,
+      tab: null
     };
   },
 

@@ -18,6 +18,7 @@
     "downloadjs": "^1.4.7",
     "vue": "^3.2.45",
     "vue3-infinite-scroll-good": "^1.0.2",
+    "vue3-lazyload": "^0.3.6",
     "vuetify": "^3.1.2"
   },
   "devDependencies": {

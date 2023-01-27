@@ -1,11 +1,8 @@
 import { createApp } from 'vue'
 import infiniteScroll from 'vue3-infinite-scroll-good'
-
 import './style.css'
 import App from './App.vue'
 import router from './router'
-
-
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'

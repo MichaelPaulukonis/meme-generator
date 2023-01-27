@@ -12,7 +12,7 @@ v-container.results
           :src="`${source(item)}_q.jpg`",
           :title="item.title",
           :id="index"
-          @selected="selected({...item, src: source(item).jpg})"
+          @selected="selected({...item, src: source(item) + '.jpg'})"
           )
 
     h4 Loading...
