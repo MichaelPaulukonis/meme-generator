@@ -16,17 +16,20 @@ v-card-title {{ title }}
         v-card-text.buttons
           v-text-field(label="Enter the above text here", outlined, clearable, hide-details, v-model="aboveText" v-on:change="draw")
           v-text-field(label="Enter the below text here", outlined, clearable, hide-details, v-model="belowText" v-on:change="draw")
-          v-col.pr-4
-            v-select(
-              :items="fontList"
-              v-model="activeFont"
-              filled
-              dense
-              label="font picker"
-              v-on:change="draw"
-            )
-              template(#item="{item}")
-                span(:style="{'font-family': item}") {{ item }}
+
+          //- v-col.pr-4
+          v-select(
+            :items="fontList"
+            v-model="activeFont"
+            :style="{ 'font-family': activeFont }"
+            filled
+            dense
+            label="font picker"
+            @update:model-value="draw"
+          )
+            template(#item="{ props }")
+              v-list-item(v-bind="props" :style="{'font-family': props.value}")
+
           v-col.pr-4 
             v-row
               ColorPicker(v-model="color1" @update:model-value="draw" text="text")
