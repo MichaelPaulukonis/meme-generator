@@ -17,7 +17,6 @@ v-card-title {{ title }}
           v-text-field(label="Enter the above text here", outlined, clearable, hide-details, v-model="aboveText" v-on:change="draw")
           v-text-field(label="Enter the below text here", outlined, clearable, hide-details, v-model="belowText" v-on:change="draw")
 
-          //- v-col.pr-4
           v-select(
             :items="fontList"
             v-model="activeFont"
