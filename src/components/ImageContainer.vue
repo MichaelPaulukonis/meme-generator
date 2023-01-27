@@ -1,6 +1,11 @@
 <template lang="pug">
+//- v-img(
+//-   :src="`${src}_q.jpg`"
+//-   :title="title"
+//-   @click="selected"
+//-   )
 v-img(
-  :src="`${src}_q.jpg`"
+  :src="src"
   :title="title"
   @click="selected"
   )

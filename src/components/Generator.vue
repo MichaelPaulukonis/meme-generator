@@ -201,7 +201,7 @@ export default {
     loaded() {
       this.img.onload = () => this.draw()
       this.img.crossOrigin = 'anonymous'
-      this.img.src = `${this.src}.jpg`
+      this.img.src = `${this.src}`
     },
     onDrop(e) {
       const data = e.dataTransfer || e.originalEvent.dataTransfer;

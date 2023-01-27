@@ -3,16 +3,16 @@ v-container.results
   p
     v-btn(text, icon, @click="handleBack")
       v-icon mdi-arrow-left
-    | {{ total.toLocaleString() }} Results for "{{ text }}" - page {{ page }}
+    | Results for "{{ text }}" 
 
-  div(v-infinite-scroll="fetchData", infinite-scroll-disabled="busy")
+  div()
     v-row
-      v-col.image(v-for="(item, index) in photo", :key="index", cols="3")
+      v-col.image(v-for="(item, index) in memes", :key="index", cols="3")
         image-container(
-          :src="`${source(item)}_q.jpg`",
-          :title="item.title",
+          :src="source(item)",
+          :title="item",
           :id="index"
-          @selected="selected({...item, src: source(item).jpg})"
+          @selected="selected({title: item, src: source(item)})"
           )
 
     h4 Loading...
@@ -20,9 +20,10 @@ v-container.results
 
 <script>
 import ImageContainer from "./ImageContainer.vue"
+import memes from '@/helpers/memeList.js'
 
 export default {
-  name: "resultsContainer",
+  name: "localResultsContainer",
 
   components: {
     ImageContainer,
@@ -32,35 +33,22 @@ export default {
     text: {
         type: String,
         default: ''
-      },
-    photo: [],
-    total: {
-      type: Number,
-      default: 0
-    },
-    page: {
-      type: Number,
-      default: 0
-    },
+      }
   },
 
   data() {
     return {
-      busy: false,
+      memes
     };
   },
 
   methods: {
-    fetchData() {
-      this.$emit('next')
-    },
-
     handleBack(e) {
       e.preventDefault();
     },
 
     source(item) {
-      return `https://live.staticflickr.com/${item.server}/${item.id}_${item.secret}`
+      return `/memes/${item}`
     },
 
     selected(e) {

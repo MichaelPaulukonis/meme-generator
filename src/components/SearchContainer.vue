@@ -27,16 +27,26 @@ v-form(
       @next="fetchData"
       @selected="selected"
       )
+
+  v-container()
+    local-container(
+      :text="text"
+      :photo="photo"
+      @selected="selected"
+      )      
 </template>
 
 <script>
 import ResultsContainer from './ResultsContainer.vue'
+import LocalContainer from './LocalResultsContainer.vue'
+
 
 export default {
   name: "searchPage",
 
   components: {
-    ResultsContainer
+    ResultsContainer,
+    LocalContainer
   },
 
   data() {
