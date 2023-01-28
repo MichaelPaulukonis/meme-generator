@@ -1,0 +1,1 @@
+import{r as o,o as t,c as a,a as n,b as s,_ as c,H as r}from"./index-ee91167e.js";const p=s("h1",null,"ABOUT",-1);function m(l,d,i,u,f,h){const e=o("home-page");return t(),a("div",null,[p,n(e)])}const _={name:"HomeView",components:{HomePage:r}},$=c(_,[["render",m]]);export{$ as default};
