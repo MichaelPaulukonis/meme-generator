@@ -13,6 +13,6 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
-  base: process.env.DEPLOY_ENV === "GH_PAGES" ? "/meme-generator/" : "",
   },
+  base: process.env.DEPLOY_ENV === "GH_PAGES" ? "/meme-generator/" : "",
 })
