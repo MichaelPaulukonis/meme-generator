@@ -121,9 +121,9 @@ v-card-title {{ title }}
             v-icon(left) mdi-download
             | Export
 
-          v-btn(color="primary" variant="flat" @click="close") Cancel
-
-          v-btn(color="secondary" variant="flat" @click="search") Search
+          v-btn(color="secondary" variant="flat" @click="search")
+            v-icon(left) mdi-magnify
+            | Search
 
 </template>
 
@@ -241,9 +241,6 @@ export default {
     init() {
       this.aboveText = "First line"
       this.belowText = "Second line"
-    },
-    close() {
-      this.$emit('cancel')
     },
 
     draw() {

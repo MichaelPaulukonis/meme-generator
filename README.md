@@ -1,9 +1,10 @@
-# meme-generator-vue2
+# meme-generator-vue3
+
+TODO: update for vue3, vuetify3
 
 [![vue](https://img.shields.io/badge/vue-2.6.14-4FC08D)](https://www.npmjs.com/package/vue/v/2.6.14)
 [![vue-router](https://img.shields.io/badge/vue--router-3.5.1-brightgreen)](https://www.npmjs.com/package/vue-router/v/3.5.1)
 [![vuetify](https://img.shields.io/badge/vuetify-2.6.0-1867C0)](https://www.npmjs.com/package/vuetify/v/2.6.5)
-[![vue-infinite-scroll](https://img.shields.io/badge/vue--infinite--scroll-2.0.2-blue)](https://www.npmjs.com/package/vue-infinite-scroll/v/2.0.2)
 [![downloadjs](https://img.shields.io/badge/downloadjs-1.4.7-F7DF1E)](https://www.npmjs.com/package/downloadjs/v/1.4.7)
 
 ## Project setup
@@ -27,7 +28,6 @@ npm run lint
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 ## my notes
@@ -39,7 +39,18 @@ Provides results (actual search takess place in Resuults.vue)
 ## road map
 
 - new flickr API-key + instructions on setup
-- use local images OR search
+- ~~use local images OR search~~
 - more text options
 - condense UI
 - https://vueuse.org/guide/ ???
+
+
+## prior art
+
+- https://github.com/voxmedia/meme
+- https://github.com/bitshadow/slate (python, text-only, animated!)
+- https://github.com/developers-cosmos/Meme-Generator
+- https://github.com/mat3e/brains
+- https://github.com/lijinke666/react-meme-generator
+- https://github.com/captbaritone/urlmeme/tree/master/templates/memes
+- https://github.com/georapbox/meme-generator ==> multiple lines, w/ individual text control

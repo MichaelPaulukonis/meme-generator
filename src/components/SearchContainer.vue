@@ -8,15 +8,18 @@ v-form(
       autofocus,
       placeholder="Search Flickr"
       append-icon="mdi-magnify",
-      prepend-icon="mdi-anvil",
+      @click:append="fetchData",
       rounded,
       outlined,
       clearable,
       hide-details,
       v-model="text",
-      @click:append="fetchData",
-      @click:prepend="closeSearch"
       )
+      template(v-slot:prepend)
+        v-tooltip(location="bottom")
+          template(v-slot:activator="{ props }")
+            v-icon(v-bind="props" icon="mdi-anvil" @click="closeSearch")
+          | Exit Search
 
   v-card 
     v-tabs(
@@ -71,7 +74,7 @@ export default {
       page: 0,
       photo: [],
       total: 0,
-      tab: null
+      tab: 'local'
     };
   },
 

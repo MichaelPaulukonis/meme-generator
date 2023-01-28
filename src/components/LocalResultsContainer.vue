@@ -1,11 +1,6 @@
 <template lang="pug">
 v-container.results
-  p
-    v-btn(text, icon, @click="handleBack")
-      v-icon mdi-arrow-left
-    | Results for "{{ text }}" 
-
-  div()
+  div
     v-row
       v-col.image(v-for="(item, index) in memes", :key="index", cols="3")
         image-container(
@@ -15,7 +10,6 @@ v-container.results
           @selected="selected({title: item, src: source(item)})"
           )
 
-    h4 Loading...
 </template>
 
 <script>
