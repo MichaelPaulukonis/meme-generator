@@ -5062,14 +5062,14 @@ textarea.v-field__input::placeholder {
   max-width: 600px;
 }
 
-.Home[data-v-ba1eddf7] {
+.Home[data-v-f6424e1f] {
   height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.Search[data-v-ba1eddf7] {
+.Search[data-v-f6424e1f] {
   max-width: 600px;
 }
 @keyframes v-shake {

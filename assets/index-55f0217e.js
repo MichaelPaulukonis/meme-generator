@@ -21583,7 +21583,7 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-const Home_vue_vue_type_style_index_0_scoped_ba1eddf7_lang = "";
+const Home_vue_vue_type_style_index_0_scoped_f6424e1f_lang = "";
 const _sfc_main$1 = {
   name: "homePage",
   components: {
@@ -21593,7 +21593,7 @@ const _sfc_main$1 = {
   data() {
     return {
       text: "",
-      src: "/memes/toons/philosoraptor.jpg",
+      src: "./memes/toons/philosoraptor.jpg",
       title: "title",
       id: "1",
       searchVisible: false
@@ -21623,7 +21623,7 @@ const _sfc_main$1 = {
     }
   }
 };
-const HomePage = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", render$1], ["__scopeId", "data-v-ba1eddf7"]]);
+const HomePage = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", render$1], ["__scopeId", "data-v-f6424e1f"]]);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_home_page = resolveComponent("home-page");
   return openBlock(), createBlock(_component_home_page);
@@ -21644,11 +21644,11 @@ const router = createRouter({
     },
     {
       path: "/about",
-      component: () => __vitePreload(() => import("./About-1d2be6c6.js"), true ? [] : void 0)
+      component: () => __vitePreload(() => import("./About-181c191b.js"), true ? [] : void 0)
     },
     {
       path: "/contact",
-      component: () => __vitePreload(() => import("./Contact-6b981a53.js"), true ? [] : void 0)
+      component: () => __vitePreload(() => import("./Contact-d524c480.js"), true ? [] : void 0)
     }
   ]
 });
