@@ -8532,6 +8532,12 @@ function createWebHistory(base) {
   });
   return routerHistory;
 }
+function createWebHashHistory(base) {
+  base = location.host ? base || location.pathname + location.search : "";
+  if (!base.includes("#"))
+    base += "#";
+  return createWebHistory(base);
+}
 function isRouteLocation(route) {
   return typeof route === "string" || route && typeof route === "object";
 }
@@ -21630,7 +21636,7 @@ const _sfc_main = {
 };
 const Home = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render]]);
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: [
     {
       path: "/",
@@ -21638,11 +21644,11 @@ const router = createRouter({
     },
     {
       path: "/about",
-      component: () => __vitePreload(() => import("./About-e409cf47.js"), true ? [] : void 0)
+      component: () => __vitePreload(() => import("./About-965bfa76.js"), true ? [] : void 0)
     },
     {
       path: "/contact",
-      component: () => __vitePreload(() => import("./Contact-752b04cf.js"), true ? [] : void 0)
+      component: () => __vitePreload(() => import("./Contact-7a9d5664.js"), true ? [] : void 0)
     }
   ]
 });
