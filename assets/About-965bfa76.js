@@ -1,4 +1,4 @@
-import { r as resolveComponent, o as openBlock, c as createElementBlock, a as createVNode, b as createBaseVNode, _ as _export_sfc, H as HomePage } from "./index-55f0217e.js";
+import { r as resolveComponent, o as openBlock, c as createElementBlock, a as createVNode, b as createBaseVNode, _ as _export_sfc, H as HomePage } from "./index-44cebd5b.js";
 const _hoisted_1 = /* @__PURE__ */ createBaseVNode("h1", null, "ABOUT", -1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_home_page = resolveComponent("home-page");

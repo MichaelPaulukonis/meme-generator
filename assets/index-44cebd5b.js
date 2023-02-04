@@ -20339,7 +20339,7 @@ const _sfc_main$3 = {
       e.preventDefault();
     },
     source(item) {
-      return `/memes/${item}`;
+      return `./memes/${item}`;
     },
     selected(e) {
       console.log(e);
@@ -21644,11 +21644,11 @@ const router = createRouter({
     },
     {
       path: "/about",
-      component: () => __vitePreload(() => import("./About-181c191b.js"), true ? [] : void 0)
+      component: () => __vitePreload(() => import("./About-965bfa76.js"), true ? [] : void 0)
     },
     {
       path: "/contact",
-      component: () => __vitePreload(() => import("./Contact-d524c480.js"), true ? [] : void 0)
+      component: () => __vitePreload(() => import("./Contact-7a9d5664.js"), true ? [] : void 0)
     }
   ]
 });
