@@ -3,21 +3,22 @@ const memes = [
     {
         subject: 'toons',
         images: [
-            'toons/philosoraptor.jpg',
-            'toons/me_gusta.jpg',
             'toons/all_of_the_things.jpg',
+            'toons/bitch_please.png',
+            'toons/forever_alone.jpg',
+            'toons/great_scott.jpg',
+            'toons/i_hate.jpg',
+            'toons/me_gusta.jpg',
+            'toons/my_little_pony_1.jpg',
+            'toons/not_sure_if.jpg',
+            'toons/okay.jpg',
+            'toons/philosoraptor.jpg',
             'toons/rage_fu.jpg',
             'toons/rainbow_star_pony.jpg',
             'toons/socially_awkward_penguin.jpg',
-            'toons/yuno_guy.jpg',
-            'toons/not_sure_if.jpg',
-            'toons/whyyyyy.jpg',
-            'toons/my_little_pony_1.jpg',
-            'toons/okay.jpg',
             'toons/trollface.jpg',
-            'toons/i_hate.jpg',
-            'toons/great_scott.jpg',
-            'toons/forever_alone.jpg'
+            'toons/whyyyyy.jpg',
+            'toons/yuno_guy.jpg',
         ]
     },
     {
@@ -29,6 +30,7 @@ const memes = [
             'people/when_i_was_a_kid.jpg',
             'people/baby_godfather.jpg',
             'people/fuck_you_linus.jpg',
+            'people/kewpie_poophead.png',
             'people/not_bad_obamas.jpg',
             'people/geek_reader.jpg',
             'people/first_world_problems.jpg',
@@ -65,4 +67,11 @@ const memes = [
     }
 ]
 
-export default memes.map(s => s.images).flat()
+const flat = memes.map(s => s.images).flat()
+const thumb = (src) => src.split('.').slice(0,-1).join('.') + '_tn.jpg'
+const memeList = flat.map(m => ({
+    src: `./memes/${m}`,
+    'thumb': `./memes/${thumb(m)}`
+}))
+
+export default memeList

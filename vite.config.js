@@ -15,4 +15,7 @@ export default defineConfig({
     },
   },
   base: process.env.DEPLOY_ENV === "GH_PAGES" ? "/meme-generator/" : "",
+  build: {
+    minify: false
+}
 })

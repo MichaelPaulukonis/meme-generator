@@ -4,10 +4,10 @@ v-container.results
     v-row
       v-col.image(v-for="(item, index) in memes", :key="index", cols="3")
         image-container(
-          :src="source(item)",
-          :title="item",
+          :src="item.thumb",
+          :title="item.src",
           :id="index"
-          @selected="selected({title: item, src: source(item)})"
+          @selected="selected({title: item.src, src: item.src})"
           )
 
 </template>
@@ -42,7 +42,7 @@ export default {
     },
 
     source(item) {
-      return `/memes/${item}`
+      return `./memes/${item}`
     },
 
     selected(e) {
