@@ -20222,21 +20222,22 @@ const memes = [
   {
     subject: "toons",
     images: [
-      "toons/philosoraptor.jpg",
-      "toons/me_gusta.jpg",
       "toons/all_of_the_things.jpg",
+      "toons/bitch_please.png",
+      "toons/forever_alone.jpg",
+      "toons/great_scott.jpg",
+      "toons/i_hate.jpg",
+      "toons/me_gusta.jpg",
+      "toons/my_little_pony_1.jpg",
+      "toons/not_sure_if.jpg",
+      "toons/okay.jpg",
+      "toons/philosoraptor.jpg",
       "toons/rage_fu.jpg",
       "toons/rainbow_star_pony.jpg",
       "toons/socially_awkward_penguin.jpg",
-      "toons/yuno_guy.jpg",
-      "toons/not_sure_if.jpg",
-      "toons/whyyyyy.jpg",
-      "toons/my_little_pony_1.jpg",
-      "toons/okay.jpg",
       "toons/trollface.jpg",
-      "toons/i_hate.jpg",
-      "toons/great_scott.jpg",
-      "toons/forever_alone.jpg"
+      "toons/whyyyyy.jpg",
+      "toons/yuno_guy.jpg"
     ]
   },
   {
@@ -20284,7 +20285,12 @@ const memes = [
     ]
   }
 ];
-const memes$1 = memes.map((s) => s.images).flat();
+const flat = memes.map((s) => s.images).flat();
+const thumb = (src) => src.split(".").slice(0, -1).join(".") + "_tn.jpg";
+const memeList = flat.map((m) => ({
+  src: `./memes/${m}`,
+  "thumb": `./memes/${thumb(m)}`
+}));
 function render$3(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_image_container = resolveComponent("image-container");
   return openBlock(), createBlock(VContainer, { class: "results" }, {
@@ -20300,10 +20306,10 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
               }, {
                 default: withCtx(() => [
                   createVNode(_component_image_container, {
-                    src: $options.source(item),
-                    title: item,
+                    src: item.thumb,
+                    title: item.src,
                     id: index,
-                    onSelected: ($event) => $options.selected({ title: item, src: $options.source(item) })
+                    onSelected: ($event) => $options.selected({ title: item.src, src: item.src })
                   }, null, 8, ["src", "title", "id", "onSelected"])
                 ]),
                 _: 2
@@ -20331,7 +20337,7 @@ const _sfc_main$3 = {
   },
   data() {
     return {
-      memes: memes$1
+      memes: memeList
     };
   },
   methods: {
@@ -21644,11 +21650,11 @@ const router = createRouter({
     },
     {
       path: "/about",
-      component: () => __vitePreload(() => import("./About-965bfa76.js"), true ? [] : void 0)
+      component: () => __vitePreload(() => import("./About-b318c74e.js"), true ? [] : void 0)
     },
     {
       path: "/contact",
-      component: () => __vitePreload(() => import("./Contact-7a9d5664.js"), true ? [] : void 0)
+      component: () => __vitePreload(() => import("./Contact-b8ec6e55.js"), true ? [] : void 0)
     }
   ]
 });
