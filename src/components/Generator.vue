@@ -1,18 +1,24 @@
 <template lang="pug">
-v-card-title {{ title }}
+#generator
+  v-card-title {{ title }}
   v-container(
     @drop="onDrop($event)"
     @dragover.prevent
     @dragenter.prevent
     )
     v-row
-      v-col.dialog(xs="12" md="6")
-        canvas(:id="`cvs_${id}`")
-          | Get a real browser!
-          br
-          a(href="http://www.google.com/chrome") Google Chrome to the rescue!
+      v-col.dialog.md-8
+        #canvasPlaceholder
+          canvas(:id="`cvs_${id}`")
+            | Get a real browser!
+            br
+            a(href="http://www.google.com/chrome") Google Chrome to the rescue!
+          #instructions.text-center.px-3.d-flex.justify-content-center.align-items-center.text-muted
+            .fs-lg Drag &amp; Drop an image or use any of the alternative upload methods to generate your meme.
+              br
+              | The images are processed without being stored on any server.
 
-      v-col.dialog.actions(xs="12", md="6")
+      v-col.dialog.actions.md-4
         v-card-text.buttons
           v-text-field(label="Enter the above text here", outlined, clearable, hide-details, v-model="aboveText" v-on:change="draw")
           v-text-field(label="Enter the below text here", outlined, clearable, hide-details, v-model="belowText" v-on:change="draw")
@@ -33,6 +39,8 @@ v-card-title {{ title }}
             v-row
               ColorPicker(v-model="color1" @update:model-value="draw" text="text")
               ColorPicker(v-model="outlineColor" @update:model-value="draw" text="outline")
+
+          Widgets()
 
           v-col.pr-4 
             v-slider(
@@ -95,7 +103,7 @@ v-card-title {{ title }}
                   v-on:change="draw"
                   )
 
-          v-col.pr-4 
+          v-col.pr-4
             v-slider(
               v-model="outlineSize"
               label="outline size"
@@ -131,12 +139,16 @@ v-card-title {{ title }}
 import download from "downloadjs";
 import fontList from '../helpers/fontList'
 import ColorPicker from './ColorPicker.vue'
+import TextWidget from './generator/TextWidget.vue'
+import Widgets from './generator/Widgets.vue'
+
+let canvas = null // defined when loaded 
 
 // TODO: I don't understand this! (Havent taken the time to)
 const fragmentText = (ctx, text, maxWidth) => {
-  var words = text.split(' '),
-    lines = [],
-    line = "";
+  const words = text.split(' ')
+  let lines = []
+  let line = ""
   if (ctx.measureText(text).width < maxWidth) {
     return [text];
   }
@@ -163,6 +175,54 @@ const fragmentText = (ctx, text, maxWidth) => {
   return lines;
 }
 
+const MAX_WIDTH = 800;
+const MAX_HEIGHT = 600;
+const MIN_WIDTH = 400;
+const MIN_HEIGHT = 400;
+
+const getCanvasSize = (img) => {
+  let width = img.width;
+  let height = img.height;
+
+  if (width > height) {
+    if (width > MAX_WIDTH) {
+      height *= MAX_WIDTH / width;
+      width = MAX_WIDTH;
+    }
+    else if (width < MIN_WIDTH) {
+      height *= MIN_HEIGHT / width
+      width = MIN_WIDTH
+    }
+  } else {
+    if (height > MAX_HEIGHT) {
+      width *= MAX_HEIGHT / height;
+      height = MAX_HEIGHT;
+    }
+    else if (height < MIN_HEIGHT) {
+      width *= MIN_HEIGHT / height;
+      height = MIN_HEIGHT;
+    }
+  }
+  return { width, height }
+}
+
+// WIP
+// see https://github.com/georapbox/meme-generator
+const defaultTextOptions = {
+  _isSettingsOpen: false,
+  text: '',
+  fillColor: '#ffffff',
+  shadowColor: '#000000',
+  font: 'Anton',
+  fontSize: 40,
+  fontWeight: 'normal',
+  textAlign: 'center',
+  shadowBlur: 3,
+  offsetY: 0,
+  offsetX: 0,
+  allCaps: true
+};
+
 export default {
   name: "GeneratorCore",
 
@@ -181,8 +241,9 @@ export default {
       padY: 4,
       ctx: null,
       fontList: fontList,
-      title: ''
-    };
+      title: '',
+      textOptions: [{ ...defaultTextOptions }]
+    }
   },
 
   props: {
@@ -191,12 +252,15 @@ export default {
   },
 
   components: {
-    ColorPicker
+    ColorPicker,
+    TextWidget,
+    Widgets
   },
 
   mounted() {
     this.init()
     this.$nextTick(this.loaded)
+    canvas = () => document.getElementById(`cvs_${this.id}`)
   },
 
   methods: {
@@ -213,16 +277,16 @@ export default {
       else {
         const file = data.files[0];
         if (file.type.indexOf('image') === -1) {
+          // TODO: bring this back! It's a good thing to have.
           // Notifier.error('Not an image!', 'you may only drop images to the page');
-          e.preventDefault();
-          return false;
+        } else {
+          this.title = file.name
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = (ev) => {
+            this.img.src = ev.target.result
+          }
         }
-        this.title = file.name
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = (ev) => {
-          this.img.src = ev.target.result
-        };
       }
       e.preventDefault()
       return false
@@ -231,7 +295,6 @@ export default {
       this.$emit('search')
     },
     exportImage() {
-      const canvas = () => document.getElementById(`cvs_${this.id}`)
       var dataURL = canvas().toDataURL("image/png");
       download(
         dataURL,
@@ -244,30 +307,9 @@ export default {
     },
 
     draw() {
-      const canvas = () => document.getElementById(`cvs_${this.id}`)
       if (!canvas()) return
       let ctx = canvas().getContext('2d')
-      ctx.drawImage(this.img, 0, 0)
-
-      // TODO: larger limit
-      // also a minimum size, plz
-      const maxh = 640
-      const maxw = 450
-      const minh = 400
-      const minw = 300
-
-      let height = this.img.height
-      let width = this.img.width
-
-      while (height > maxh || width > maxw) {
-        --height;
-        --width;
-      }
-
-      while (height < minh || width < minw) {
-        ++height;
-        ++width;
-      }
+      const {width, height } = getCanvasSize(this.img)
 
       canvas().height = height;
       canvas().width = width;
@@ -320,5 +362,13 @@ export default {
 </script>
 
 <style scoped>
+#canvasPlaceholder {
+  padding: 0.25rem;
+  border: 2px dashed #c0c0c0;
+}
 
+#instructions {
+  min-height: 200px;
+  height: 100%;
+}
 </style>

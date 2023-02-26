@@ -2,7 +2,7 @@
 v-container.results
   div
     v-row
-      v-col.image(v-for="(item, index) in memes", :key="index", cols="3")
+      v-col.image(v-for="(item, index) in memeList", :key="index", cols="3")
         image-container(
           :src="item.thumb",
           :title="item.src",
@@ -27,15 +27,21 @@ export default {
     text: {
         type: String,
         default: ''
-      }
+      },
+    filterString: {
+      type: String,
+      default: ''
+    }
   },
 
   data() {
-    return {
-      memes
-    };
   },
 
+  computed: {
+    memeList() {
+      return memes.filter(m => m.src.includes(this.filterString.replace(/\s/g, '_')))
+    },
+  },
   methods: {
     handleBack(e) {
       e.preventDefault();

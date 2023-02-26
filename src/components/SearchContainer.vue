@@ -6,7 +6,7 @@ v-form(
   v-container.Search
     v-text-field.Search(
       autofocus,
-      placeholder="Search Flickr"
+      placeholder="Search"
       append-icon="mdi-magnify",
       @click:append="fetchData",
       rounded,
@@ -48,6 +48,7 @@ v-form(
             local-container(
               :text="text"
               :photo="photo"
+              :filterString="text"
               @selected="selected"
               )      
 </template>
@@ -101,6 +102,7 @@ export default {
       this.total = 0;
     },
 
+    // TODO: all of this flickr stuff should be in the Flickr page, no?
     fetchData() {
       if (this.busy) return
       this.busy = true;

@@ -7,7 +7,7 @@
           v-btn(
             :color="colorChoice"
             v-bind="mergeProps(menu, tooltip)"
-          ) {{ text }}
+          )
         span Select {{ text }} color
     v-color-picker(
       v-model="colorChoice"
