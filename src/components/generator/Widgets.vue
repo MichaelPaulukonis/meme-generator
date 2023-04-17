@@ -4,10 +4,10 @@
     v-icon(left) mdi-plus
     | Add
 
-  div(v-for="tw, index in widgets" :key="tw.id")
+  div(v-for="w, index in widgets" :key="w.id")
     TextWidget(
-      :options="tw"
-      :id="index"
+      :options="w"
+      :index="index"
       @remove="remove"
       )
 </template>
@@ -31,6 +31,8 @@ export default {
 
   methods: {
     add() {
+      // TODO: need to figure out default location when created
+      // index may change, so ..... ugh
       const ti = new textInfo()
       this.widgets = [ti, ...this.widgets]
     },
